@@ -1,6 +1,13 @@
 <component name="ArtifactManager">
   <artifact name="unnamed">
     <output-path>$PROJECT_DIR$/out/artifacts/unnamed</output-path>
-    <root id="root" />
+    <root id="root">
+      <element id="artifact" artifact-name="TaskManagement:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes" />
+      </element>
+      <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.11.4" />
+      <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.28" />
+    </root>
   </artifact>
 </component>
