@@ -42,8 +42,8 @@ All Users:
 
 </table>
  <br>
-ADD USER:
-<form action="/addUser" method="post">
+ADD USER:<br>
+<form action="/addUser" method="post" style="float: left">
     Name:      <input type="text" name="name"/> <br>
     Surname:   <input type="text" name="surname"/><br>
     email:     <input type="text" name="email"/><br>

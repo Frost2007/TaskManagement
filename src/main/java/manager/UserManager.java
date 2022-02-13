@@ -13,7 +13,7 @@ public class UserManager {
     private Connection connection = DBConnectionProvider.getInstance().getConnection();
 
     public boolean register(User user) {
-        String sql = "INSERT INTO user(name,surname,email,password,type) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO user('name','surname','email','password','type') VALUES(?,?,?,?,?)";
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);

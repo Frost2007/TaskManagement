@@ -13,7 +13,8 @@
 <body>
 MAIN PAGE<br>
 
-<a href="/users">User Page</a>
+<a href="/users">User Page</a> <br>
+<a href="/task"> TASK PAGE</a>
 
 </body>
 </html>
