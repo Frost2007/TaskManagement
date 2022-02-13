@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = "/users")
-public class UserServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/manager")
+public class ManagerServlet extends HttpServlet {
 
     private UserManager userManager = new UserManager();
     @Override
@@ -21,7 +21,7 @@ public class UserServlet extends HttpServlet {
 
          req.setAttribute("allUsers",allUsers);
 
-         req.getRequestDispatcher("/users.jsp").forward(req,resp);
+         req.getRequestDispatcher("/manager.jsp").forward(req,resp);
 
     }
 }

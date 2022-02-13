@@ -4,7 +4,7 @@
 
 <html>
 <head>
-    <title style="font-size: large"> USER PAGE</title>
+    <title> USER PAGE</title>
 </head>
 <body>
 <%

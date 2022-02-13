@@ -11,9 +11,19 @@
     <title></title>
 </head>
 <body>
-MAIN PAGE<br>
 
-<a href="/users">User Page</a>
+<h1 style="color: cornflowerblue;
+font-family: Calibri;
+align-self: center">MAIN PAGE
+    <br>
+    PLEASE LOG IN</h1>
+<br>
+<form method="post" action="login">
+    Email   .:<input type="text" name="email"/><br/>
+    Password:<input type="text" name="pass"/><br/>
+    <input type="submit" value="login" formaction="/welcome.jsp"/>
+</form>
+
 
 </body>
 </html>
