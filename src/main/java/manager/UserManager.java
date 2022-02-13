@@ -66,4 +66,16 @@ public class UserManager {
         }
         return null;
     }
+
+    public void deleteUserById(int id) {
+       String sql ="DELETE FROM USER WHERE ID ="+id;
+        try {
+            Statement statement = connection.createStatement();
+             statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 }
