@@ -12,6 +12,7 @@
 </head>
 <body>
 <div style="font-family: 'Comic Sans MS';
+background-color: darkblue;
 color: cornflowerblue;
 text-align: center"
 
