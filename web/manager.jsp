@@ -1,23 +1,39 @@
 <%@ page import="java.util.List" %>
 <%@ page import="model.User" %>
+<%@ page import="manager.UserManager" %>
+<%@ page import="model.UserType" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="model.Task" %>
+<%@ page import="manager.TaskManager" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
 <head>
     <title> USER PAGE</title>
 </head>
+
+<style>
+    table th, td{
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 10px;
+    }
+</style>
 <body>
 <%
-    List<User> allUsers = (List<User>) request.getAttribute("allUsers");
+    List<User> allUsers = new UserManager().getAllUsers();
 
 %>
+<a href="/addUser.jsp"> ADD USER    </a> <br>
+<a href="/addTask.jsp">  ADD TASK </a> <br>
+<a href="index.jsp">  Log Out</a> <br>
+<br>
 
 All Users:
-<table border="1">
+<table>
 
     <thead>
     <tr>
-        <th>id</th>
         <th>name</th>
         <th>surname</th>
         <th>email</th>
@@ -28,7 +44,6 @@ All Users:
     <%
         for (User user : allUsers) {%>
 <tr>
-    <td><%=user.getId()%></td>
     <td><%=user.getName()%></td>
     <td><%=user.getSurname()%></td>
     <td><%=user.getEmail()%></td>
@@ -42,18 +57,39 @@ All Users:
 
 </table>
  <br>
-ADD USER:<br>
-<form action="/addUser" method="post" style="float: left">
-    Name:      <input type="text" name="name"/> <br>
-    Surname:   <input type="text" name="surname"/><br>
-    email:     <input type="text" name="email"/><br>
-    password:  <input type="text" name="password"/><br>
-    user Type: <select name="userType">
-    <option value="user">USER</option> <br>
-    <option value="user">ADMIN</option> <br></select>
-    <br>
-    <input type="submit" value="ADD USER">
-</form>
+<br>
+All TASKS:
+<%
+    List<Task> allTask = new TaskManager().getAllTasks();
+%>
+<table>
+
+    <thead>
+    <tr>
+        <th>task_name</th>
+        <th>description</th>
+        <th>deadline</th>
+        <th>status</th>
+        <th>user id</th>
+    </tr>
+    </thead>
+    <% SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        for (Task task: allTask) {%>
+    <tr>
+        <td><%=task.getTaskName()%></td>
+        <td><%=task.getDescription()%></td>
+        <td><%=sdf.format(task.getDeadline())%></td>
+        <td><%=task.getStatus().name()%></td>
+        <td><%=task.getUser().getName() + " " + task.getUser().getSurname()%></td>
+<%--        <td><a href="/deleteTask?id=<%=task.getId()%>" >Delete</a></td>--%>
+    </tr>
+
+    <% }
+
+    %>
+
+</table>
+
 
 </body>
 </html>

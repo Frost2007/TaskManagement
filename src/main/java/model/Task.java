@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
+import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,9 +13,12 @@ import java.sql.Date;
 @Builder
 
 public class Task {
-    private  int id;
+    private int id;
     private String taskName;
     private String description;
     private Date deadline;
     private TaskStatus status;
+    private User user;
+
+
 }

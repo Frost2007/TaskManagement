@@ -13,22 +13,20 @@ public class UserManager {
     private Connection connection = DBConnectionProvider.getInstance().getConnection();
 
     public boolean addUser(User user) {
-        String sql = "INSERT INTO user('name','surname','email','password','type') VALUES(?,?,?,?,?)";
-
+        String sql = "INSERT INTO task_management.user(name,surname,email,password,type) VALUES(?,?,?,?,?)";
         try {
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, user.getName());
             statement.setString(2, user.getSurname());
             statement.setString(3, user.getEmail());
             statement.setString(4, user.getPassword());
-            statement.setString(5, user.getType().toString());
+            statement.setString(5, user.getType().name());
             statement.executeUpdate();
-
             ResultSet rs = statement.getGeneratedKeys();
             if (rs.next()) {
                 user.setId(rs.getInt(1));
-                return true;
             }
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -89,6 +87,23 @@ public class UserManager {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()){
                return getUserFromResultSet(resultSet);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return  null;
+
+    }
+    public User getUserById(int id) {
+        String sql = "SELECT * FROM task_management.user WHERE id=? ";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()){
+                return getUserFromResultSet(resultSet);
             }
 
         } catch (SQLException e) {

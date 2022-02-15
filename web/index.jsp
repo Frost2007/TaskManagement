@@ -11,19 +11,32 @@
     <title></title>
 </head>
 <body>
+<div style="font-family: 'Comic Sans MS';
+color: cornflowerblue;
+text-align: center"
 
-<h1 style="color: cornflowerblue;
-font-family: Calibri;
-align-self: center">MAIN PAGE
-    <br>
-    PLEASE LOG IN</h1>
+
+>
+<h1 > THIS IS MAIN PAGE PLEASE LOG IN</h1>
 <br>
-<form method="post" action="login">
-    Email   .:<input type="text" name="email"/><br/>
-    Password:<input type="text" name="pass"/><br/>
-    <input type="submit" value="login" formaction="/welcome.jsp"/>
-</form>
+</div>
+<%--<form method="post" action="/login">--%>
+<%--    Email   .:<input type="text" name="email"/><br/>--%>
+<%--    Password:<input type="text" name="password"/><br/>--%>
+<%--    <input type="submit" value="login"/>--%>
+<%--</form>--%>
+<div style="text-align: center">
+    ADD USER:
+    <form action="/login" method="post">
 
+        <label for="email">Email:</label><br>
+        <input type="email" name="email" id="email"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" name="password" id="password"><br>
+        <br>
+        <input type="submit" value="Login">
+    </form>
+</div>
 
 </body>
 </html>
