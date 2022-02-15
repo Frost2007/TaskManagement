@@ -52,15 +52,17 @@ public class TaskManager {
 
     }
 
-    public List<Task> getTaskByUserEmail(User user) {
-        String sql = "SELECT FROM task_manager.task WHERE email = " + user.getEmail();
+    public List<Task> getTaskByUserId(User user) {
+        String sql = "SELECT * FROM task_management.task WHERE user_id = ?";
         List<Task> tasks = new ArrayList<>();
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1,user.getId());
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 tasks.add(getTaskFromResultSet(resultSet));
             }
+            return tasks;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -99,16 +101,32 @@ public class TaskManager {
         return null;
     }
 
-    public boolean changeTaskStatusById(int id) {
-        String sql = "UPDATE task_management.task SET t.status = 'FINISHED' WHERE status='IN_PROGRESS' ?";
+    public boolean changeTaskStatusById(int id, TaskStatus finished) {
+        String sql = "UPDATE task_management.task SET status = 'FINISHED' WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1,id);
-           statement.executeUpdate();
+            statement.setInt(1, id);
+            statement.executeUpdate();
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
+    }
+
+
+    public Task getById(int id) {
+        String sql = "SELECT * FROM task_management.task WHERE id = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1,id);
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next())
+            return getTaskFromResultSet(resultSet);
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return null;
     }
 }
